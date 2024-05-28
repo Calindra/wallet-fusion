@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Card,
     CardContent,
@@ -95,11 +94,12 @@ const BasicTable = () => (
                                     <TableCell>
                                         <Box display="flex" alignItems="center">
                                             <Avatar
-                                                src={basic.imgsrc}
                                                 alt={basic.imgsrc}
-                                                width="35"
+                                                src={basic.imgsrc}
                                                 sx={{
                                                     borderRadius: '100%',
+                                                    width: 35
+
                                                 }}
                                             />
                                             <Box
