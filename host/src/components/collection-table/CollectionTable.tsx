@@ -58,7 +58,7 @@ const basics = [
 ];
 
 const BasicTable = () => (
-    <PageContainer title="Basic Table" description="this is Basic Table page">
+    <PageContainer title="Collections" description="this is Basic Table page">
         <Card>
             <CardContent>
                 <Box

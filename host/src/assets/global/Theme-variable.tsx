@@ -196,7 +196,7 @@ const themesOptions = [
     },
 ];
 
-export const BuildTheme = (config = {}) => {
+export const BuildTheme = (config: any = {}) => {
     let themeOptions = themesOptions.find((theme) => theme.name === config.theme);
     const customizer = {
         activeDir: "ltr",

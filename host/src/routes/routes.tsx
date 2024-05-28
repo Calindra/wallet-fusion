@@ -1,9 +1,16 @@
 import { RouteObject } from 'react-router-dom'
-import App from '../App.tsx'
+import HeaderLayout from '../layouts/header-layout/HeaderLayout.tsx'
+import CollectionTable from '../components/collection-table/CollectionTable.tsx'
+
 
 export const routes: RouteObject[] = [
     {
-        path: "/",
-        element: <App />
+        element: <HeaderLayout />,
+        children: [
+            {
+                path: "/",
+                element:<CollectionTable /> ,
+            }
+        ]
     },
 ]
