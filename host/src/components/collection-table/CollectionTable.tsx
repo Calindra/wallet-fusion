@@ -12,50 +12,9 @@ import {
 } from '@mui/material';
 
 import PageContainer from '../container/PageContainer';
+import { collections } from "../../data/collections"
 
 import img1 from '../../assets/images/users/1.jpg';
-import img2 from '../../assets/images/users/2.jpg';
-import img3 from '../../assets/images/users/3.jpg';
-import img4 from '../../assets/images/users/4.jpg';
-import img5 from '../../assets/images/users/5.jpg';
-
-const basics = [
-    {
-        id: '1',
-        imgsrc: img1,
-        name: 'Sunil Joshi',
-        price: '0.01',
-        volume: '5'
-    },
-    {
-        id: '2',
-        imgsrc: img2,
-        name: 'Andrew McDownland',
-        price: '0.75',
-        volume: '183'
-    },
-    {
-        id: '3',
-        imgsrc: img3,
-        name: 'Christopher Jamil',
-        price: '0.15',
-        volume: '24'
-    },
-    {
-        id: '4',
-        imgsrc: img4,
-        name: 'Nirav Joshi',
-        price: '0.48',
-        volume: '75'
-    },
-    {
-        id: '5',
-        imgsrc: img5,
-        name: 'Micheal Doe',
-        price: '0.84',
-        volume: '116'
-    },
-];
 
 const BasicTable = () => (
     <PageContainer title="Collections" description="this is Basic Table page">
@@ -89,16 +48,17 @@ const BasicTable = () => (
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {basics.map((basic) => (
+                            {collections.map((basic) => (
                                 <TableRow key={basic.id}>
                                     <TableCell>
                                         <Box display="flex" alignItems="center">
                                             <Avatar
-                                                alt={basic.imgsrc}
-                                                src={basic.imgsrc}
+                                                alt={basic.image}
+                                                src={basic.image}
                                                 sx={{
-                                                    borderRadius: '100%',
-                                                    width: 35
+                                                    borderRadius: '10%',
+                                                    width: 50,
+                                                    height: 50
 
                                                 }}
                                             />
@@ -117,7 +77,7 @@ const BasicTable = () => (
                                         </Box>
                                     </TableCell>
                                     <TableCell>
-                                        <Typography variant="h6">{basic.price} ETH</Typography>
+                                        <Typography variant="h6">{basic.floorPrice} ETH</Typography>
                                     </TableCell>
                                     <TableCell>
                                         <Typography variant="h6">${basic.volume} ETH</Typography>
