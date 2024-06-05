@@ -19,7 +19,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 const BasicTable = () => {
     const collections: any = useLoaderData();
     return (
-        <PageContainer title="Collections" description="this is Basic Table page">
+        <PageContainer title="Collections" description="this is Collections page">
             <Card>
                 <CardContent>
                     <Box

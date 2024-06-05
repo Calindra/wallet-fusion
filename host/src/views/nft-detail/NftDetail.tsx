@@ -1,10 +1,5 @@
 import { Card, CardContent, Box, Grid } from '@mui/material';
-
-// import ProductDesc from '../../../components/shop/ProductDesc';
-
 import PageContainer from '../../components/container/PageContainer';
-
-// import ProductCarousel from '../../../components/shop/ProductCarousel';
 import ProductDetail from './ProductDetail';
 import { useLoaderData } from 'react-router-dom';
 
@@ -18,10 +13,7 @@ const NftDetail = () => {
     };
 
     return (
-        <PageContainer title="Shop Detail" description="this is Shop Detail page">
-            {/* breadcrumb */}
-            {/* <Breadcrumb title="eCommerce Shop" items={BCrumb} /> */}
-            {/* end breadcrumb */}
+        <PageContainer title="Token Detail" description="this is Token Detail page">
             <Card>
                 <CardContent>
                     <Grid container spacing={0}>
@@ -36,7 +28,6 @@ const NftDetail = () => {
                     </Grid>
                 </CardContent>
             </Card>
-            {/* <ProductDesc /> */}
         </PageContainer>
     );
 };
