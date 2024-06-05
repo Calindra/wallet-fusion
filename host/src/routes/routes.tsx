@@ -4,6 +4,7 @@ import CollectionTable from '../components/collection-table/CollectionTable.tsx'
 import CollectionItems from '../views/CollectionItems.tsx'
 import { getAllCollections } from './loaders/get-all-collections.ts'
 import { getCollectionById } from './loaders/get-collection-by-id.ts'
+import { getNftById } from './loaders/get-nft-by-id.ts'
 import NftDetail from '../views/nft-detail/NftDetail.tsx'
 
 
@@ -25,6 +26,8 @@ export const routes: RouteObject[] = [
             {
                 path: "collections/:collectionId/:tokenId",
                 element: <NftDetail />,
+                id: "nft_detail",
+                loader: getNftById
             }
 
         ]

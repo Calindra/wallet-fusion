@@ -73,7 +73,7 @@ const BasicTable = () => {
                                                         variant="h6"
                                                         fontWeight="600"
                                                         component={Link}
-                                                        to={`${collection.collectionAddress}`}>
+                                                        to={`${collection.id}`}>
                                                         {collection.name}
                                                     </Typography>
                                                 </Box>

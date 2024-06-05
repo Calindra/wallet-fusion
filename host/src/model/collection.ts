@@ -2,14 +2,12 @@ interface Collection {
     id: string
     name: string
     floorPrice: string
-    tokenId: string
     volume: number
     collectionAddress: string,
     image: string
 }
 interface NftItem {
     description: string;
-    external_url: string;
     image: string;
     name: string;
     lastSale: string;

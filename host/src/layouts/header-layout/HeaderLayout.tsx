@@ -25,9 +25,6 @@ const PageWrapper = experimentalStyled('div')(({ theme }) => ({
 }));
 
 const HeaderLayout = () => {
-    useEffect(() => {
-        console.log("SSSS")
-    }, [])
     const INIT_STATE = {
         activeDir: "ltr",
         activeNavbarBg: "#0b70fb",
