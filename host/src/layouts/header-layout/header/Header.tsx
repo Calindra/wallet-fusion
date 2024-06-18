@@ -90,7 +90,7 @@ const Header = ({ sx, customClass }: HeaderProps) => {
             <Toolbar>
                 {/* {mdUp ? <LogoIcon enableNavigation /> : ''} */}
                 <img src={logoCartesi} alt="Cartesi" width="50" />
-                
+
                 <Menu
                     id="service-menu"
                     anchorEl={anchorEl3}
@@ -119,67 +119,6 @@ const Header = ({ sx, customClass }: HeaderProps) => {
                             </Typography>
                         </Box>
                     </Box>
-
-                    {/* <Box>
-                        {
-                            getGlobalMenuItems(params).map((menuItem: any, idx: number) => (
-                                <React.Fragment key={`${menuItem.key}-${idx}`}>
-                                    <MenuItem
-                                        id={menuItem.key}
-                                        onClick={() => navigateAndCloseMenu(menuItem.path)}
-                                        sx={{
-                                            pt: 3,
-                                            pb: 3
-                                        }}
-                                    >
-                                        <Box display="flex" alignItems="center">
-                                            <Button
-                                                sx={{
-                                                    backgroundColor: theme =>
-                                                        theme.palette.primary.light,
-                                                    color: theme => theme.palette.primary.main,
-                                                    boxShadow: "none",
-                                                    minWidth: "50px",
-                                                    width: "45px",
-                                                    height: "40px",
-                                                    borderRadius: "10px"
-                                                }}
-                                            >
-                                                <FeatherIcon icon={menuItem.icon} width="18" height="18" />
-                                            </Button>
-                                            <Box
-                                                sx={{
-                                                    ml: 2
-                                                }}
-                                            >
-                                                <Typography
-                                                    variant="h5"
-                                                    sx={{
-                                                        lineHeight: "1.235"
-                                                    }}
-                                                >
-                                                    {menuItem.title}
-                                                </Typography>
-                                                <Typography
-                                                    color="textSecondary"
-                                                    variant="h6"
-                                                    fontWeight="400"
-                                                >
-                                                    {menuItem.subtitle}
-                                                </Typography>
-                                            </Box>
-                                        </Box>
-                                    </MenuItem>
-                                    <Divider
-                                        style={{
-                                            marginTop: 0,
-                                            marginBottom: 0
-                                        }}
-                                    />
-                                </React.Fragment>
-                            ))
-                        }
-                    </Box> */}
                 </Menu>
 
                 <Box flexGrow={1} />
@@ -193,7 +132,7 @@ const Header = ({ sx, customClass }: HeaderProps) => {
                     onClick={handleClick4}
                 >
                     <Box display="flex" alignItems="center">
-                        <Avatar
+                        {/* <Avatar
                             sx={{
                                 backgroundColor: "primary.main",
                                 width: "30px",
@@ -201,7 +140,7 @@ const Header = ({ sx, customClass }: HeaderProps) => {
                                 color: "#fff",
                                 ml: "-8px"
                             }}
-                        />
+                        /> */}
                         <Box
                             sx={{
                                 display: {
@@ -217,7 +156,7 @@ const Header = ({ sx, customClass }: HeaderProps) => {
                                 fontWeight="400"
                                 sx={{ ml: 1 }}
                             >
-                                Olá,
+                                Wallet
                             </Typography>
                             <Typography
                                 variant="h5"
