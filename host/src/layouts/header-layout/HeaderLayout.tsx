@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { experimentalStyled, Container, Box } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import Header from './header/Header';

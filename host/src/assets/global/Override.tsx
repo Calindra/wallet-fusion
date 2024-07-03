@@ -57,7 +57,8 @@ const components = {
                 "&:hover": {
                     boxShadow: "none"
                 }
-            }
+            },
+            variants: []
         }
     },
 

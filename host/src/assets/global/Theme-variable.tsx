@@ -20,7 +20,7 @@ import {
 const SidebarWidth = 265;
 const TopbarHeight = 70;
 
-const baseTheme = {
+const baseTheme: any = {
     direction: 'ltr',
     palette: {
         primary: {
@@ -226,11 +226,7 @@ export const BuildTheme = (config: any = {}) => {
         [themeOptions] = themesOptions;
     }
 
-    const theme = createTheme(
-        _.merge({}, baseTheme, baseMode, themeOptions, {
-            direction: config.direction,
-        }),
-    );
+    const theme: any = createTheme(_.merge({}, baseTheme, baseMode, themeOptions, { direction: config.direction }))
     return theme;
 };
 
