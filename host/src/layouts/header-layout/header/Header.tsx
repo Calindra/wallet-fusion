@@ -25,7 +25,10 @@ import {
 // import ProfileDropdown from "../../../components-v2/profile-dropdown/ProfileDropdown";
 // import LogoIcon from "../../../components-v2/logo-icon/LogoIcon";
 import logoCartesi from "../../../assets/cartesi-logo.png"
+import { CoinbaseWalletSDK } from "@coinbase/wallet-sdk"
 
+import Web3Modal from "web3modal"
+import { ethers } from "ethers"
 interface HeaderProps {
     sx?: object,
     customClass?: string
@@ -55,9 +58,31 @@ const Header = ({ sx, customClass }: HeaderProps) => {
     const handleClose4 = () => {
         setAnchorEl4(null);
     };
+    const providerOptions = {
+        coinbasewallet: {
+            package: CoinbaseWalletSDK,
+            options: {
+                appName: "Web3Modal Demo",
+                infuraId:{3: "https://ropsten.infura.io/v3/fefnefnesfe"}
+            }
+        }
+    }
 
-    const openWalletOptions = () => {
-        console.log("abre wallet")
+    const connectWallet = async () => {
+        console.log("connecting wallet")
+        try {
+            let web3modal = new Web3Modal({
+                cacheProvider: false,
+                providerOptions
+            })
+            console.log("web3modal ", web3modal)
+            const web3ModalInstance = await web3modal.connect()
+            console.log("web3ModalInstance ", web3ModalInstance)
+            const web3ModalProvider = new ethers.BrowserProvider(web3ModalInstance)
+            console.log(web3ModalProvider)
+        } catch (error) {
+            console.error(error)
+        }
     };
 
     return (
@@ -102,7 +127,7 @@ const Header = ({ sx, customClass }: HeaderProps) => {
                 <Button
                     variant="contained"
                     color="primary"
-                    onClick={openWalletOptions}
+                    onClick={connectWallet}
                     startIcon={<WalletIcon />}
                 >
                     Connect
