@@ -1,7 +1,7 @@
 import React from "react";
 // import { Link, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import FeatherIcon from "feather-icons-react";
+import WalletIcon from '@mui/icons-material/Wallet';
 import {
     AppBar,
     Box,
@@ -24,10 +24,19 @@ import AppsIcon from '@mui/icons-material/Apps';
 // import ProfileDropdown from "../../../components-v2/profile-dropdown/ProfileDropdown";
 // import LogoIcon from "../../../components-v2/logo-icon/LogoIcon";
 import logoCartesi from "../../../assets/cartesi-logo.png"
+import Account from "../../../components/wallet/Account";
+import WalletOptions from "../../../components/wallet/WalletOptions";
+import { useAccount } from 'wagmi'
 
 interface HeaderProps {
     sx?: object,
     customClass?: string
+}
+
+function ConnectWallet() {
+    const { isConnected } = useAccount()
+    if (isConnected) return <Account />
+    return <WalletOptions />
 }
 
 const Header = ({ sx, customClass }: HeaderProps) => {
@@ -90,7 +99,7 @@ const Header = ({ sx, customClass }: HeaderProps) => {
             <Toolbar>
                 {/* {mdUp ? <LogoIcon enableNavigation /> : ''} */}
                 <img src={logoCartesi} alt="Cartesi" width="50" />
-                
+
                 <Menu
                     id="service-menu"
                     anchorEl={anchorEl3}
@@ -183,59 +192,16 @@ const Header = ({ sx, customClass }: HeaderProps) => {
                 </Menu>
 
                 <Box flexGrow={1} />
-
                 <Button
-                    id="profile-menu-button"
-                    aria-label="menu"
-                    color="inherit"
-                    aria-controls="profile-menu"
-                    aria-haspopup="true"
+                    variant="contained"
+                    color="primary"
                     onClick={handleClick4}
+                    startIcon={<WalletIcon sx={{ fontWeight: "600px" }} />}
                 >
-                    <Box display="flex" alignItems="center">
-                        <Avatar
-                            sx={{
-                                backgroundColor: "primary.main",
-                                width: "30px",
-                                height: "30px",
-                                color: "#fff",
-                                ml: "-8px"
-                            }}
-                        />
-                        <Box
-                            sx={{
-                                display: {
-                                    xs: "none",
-                                    sm: "flex"
-                                },
-                                alignItems: "center"
-                            }}
-                        >
-                            <Typography
-                                color="textSecondary"
-                                variant="h5"
-                                fontWeight="400"
-                                sx={{ ml: 1 }}
-                            >
-                                Olá,
-                            </Typography>
-                            <Typography
-                                variant="h5"
-                                fontWeight="700"
-                                sx={{
-                                    ml: 1
-                                }}
-                            >
-                                {userData.name}
-                            </Typography>
-                            <FeatherIcon
-                                icon="chevron-down"
-                                width="20"
-                                height="20"
-                            />
-                        </Box>
-                    </Box>
+                    Connect
                 </Button>
+
+
                 <Menu
                     id="profile-menu"
                     anchorEl={anchorEl4}
@@ -244,7 +210,7 @@ const Header = ({ sx, customClass }: HeaderProps) => {
                     onClose={handleClose4}
                     sx={{
                         "& .MuiMenu-paper": {
-                            width: "385px",
+                            width: "270px",
                             right: 0,
                             top: "70px !important"
                         },
@@ -253,38 +219,7 @@ const Header = ({ sx, customClass }: HeaderProps) => {
                         }
                     }}
                 >
-                    <Box
-                        sx={{
-                            mb: 1
-                        }}
-                    >
-                        <Box display="flex" alignItems="center">
-                            <Typography variant="h4" fontWeight="500">
-                                Perfil do Usuário
-                            </Typography>
-                        </Box>
-                    </Box>
-
-                    {/* <ProfileDropdown userData={userData} /> */}
-                    <Link
-                        style={{
-                            textDecoration: "none"
-                        }}
-                        to="/logout"
-                    >
-                        <Button
-                            id="button-exit"
-                            sx={{
-                                mt: 2,
-                                display: "block",
-                                width: "100%"
-                            }}
-                            variant="contained"
-                            color="primary"
-                        >
-                            Sair
-                        </Button>
-                    </Link>
+                    <ConnectWallet />
                 </Menu>
             </Toolbar>
         </AppBar >
