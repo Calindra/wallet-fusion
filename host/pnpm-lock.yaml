@@ -36,7 +36,7 @@ dependencies:
     specifier: ^6.23.1
     version: 6.23.1(react-dom@18.3.1)(react@18.3.1)
   viem:
-    specifier: ~2.17.0
+    specifier: ^2.17.0
     version: 2.17.0(typescript@5.4.5)
   wagmi:
     specifier: ^2.10.9
@@ -3460,7 +3460,7 @@ packages:
   /@scure/bip32@1.4.0:
     resolution: {integrity: sha512-sVUpc0Vq3tXCkDGYVWGIZTRfnvu8LoTDaev7vbwh0omSvVORONr960MQWdKqJDCReIEmTj3PAr73O3aoxz7OPg==}
     dependencies:
-      '@noble/curves': 1.4.0
+      '@noble/curves': 1.4.2
       '@noble/hashes': 1.4.0
       '@scure/base': 1.1.7
     dev: false

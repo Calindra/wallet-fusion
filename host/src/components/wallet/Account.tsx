@@ -1,4 +1,6 @@
-import { useAccount, useDisconnect, useEnsAvatar, useEnsName, useBalance } from 'wagmi'
+import { useEffect, useState } from 'react'
+import { Chain } from 'viem'
+import { useAccount, useDisconnect, useEnsAvatar, useEnsName, useBalance, useConfig, useSwitchChain, useChainId } from 'wagmi'
 
 export default function Account() {
     const { address } = useAccount()
@@ -6,12 +8,60 @@ export default function Account() {
     const { data: ensName } = useEnsName({ address })
     const { data: ensAvatar } = useEnsAvatar({ name: ensName! })
     const result = useBalance({ address })
-    
+    const chainId = useChainId()
+    const { chains, switchChain } = useSwitchChain()
+    const [activeChain, setActiveChain] = useState({ name: "" } as Chain)
+    const config = useConfig()
+
+    useEffect(() => {
+        const currentChain: Chain = chains.find(chain => chain.id === chainId) as Chain
+        console.log("Current Chain: ", currentChain)
+        setActiveChain(currentChain)
+    }, [chainId, chains])
+
+    async function changeChain(e: any) {
+        try {
+            const id = parseInt(e.target.value)
+            const targetChain = chains.find(chain => chain.id === id)
+
+            if (!targetChain) {
+                throw new Error(`Chain with ID ${id} is not configured`)
+            }
+
+            await switchChain({ chainId: id }, {
+                onSuccess: (data, variables, context) => {
+                    console.log("Chain switched successfully:", data)
+                    const newChain = chains.find(chain => chain.id === variables.chainId) as Chain
+                    setActiveChain(newChain)
+                },
+                onError: (error, variables, context) => {
+                    console.error("Error switching chain:", error)
+                },
+                onSettled: (data, error, variables, context) => {
+                    console.log("Switch chain settled:", { data, error })
+                }
+            })
+        } catch (e) {
+            console.error("Error:", e)
+        }
+    }
+
+    console.log("Chains: ", chains)
+    console.log("Chain ID: ", chainId)
     return (
         <div>
+            <span>Chain: {activeChain.name}</span>
             {ensAvatar && <img alt="ENS Avatar" src={ensAvatar} />}
             {address && <div style={{ fontSize: "10px" }}>{ensName ? `${ensName} (${address})` : address}</div>}
             <span style={{ fontSize: "10px" }}>balance: {result.data?.formatted} {result.data?.symbol}</span>
+            <br />
+            <label htmlFor="chain">Choose a network:</label>
+
+            <select name="chain" id="chain" onChange={(e) => changeChain(e)}>
+                {chains.map((chain: any) => (
+                    <option key={chain.id} value={chain.id}>{chain.name}</option>
+                ))}
+            </select>
             <button style={{ fontSize: "10px" }} onClick={() => disconnect()}>Disconnect</button>
         </div>
     )
