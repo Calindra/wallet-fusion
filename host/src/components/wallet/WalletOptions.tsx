@@ -2,16 +2,11 @@ import { Button } from '@mui/material';
 import * as React from 'react'
 import { Connector, useConnect } from 'wagmi'
 import metamaskIcon from "../../assets/metamask.svg"
-import { useConfig } from 'wagmi'
-
 
 export default function WalletOptions() {
     const { connectors, connect } = useConnect()
-    const config = useConfig()
     const connec = connectors.find((connector: any) => connector.id === 'io.metamask');
-    console.log("connectors: ", connectors)
-    console.log("CONFIG: ", config)
-    console.log("CLIENT: ", config.getClient() )
+   
     if (!connec) {
         throw new Error("Any connector was found. Check if you import it correctly.")
     }

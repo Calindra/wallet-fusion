@@ -13,37 +13,33 @@ export default function Account() {
     const { chains, switchChain } = useSwitchChain()
     const [activeChain, setActiveChain] = useState({ name: "" } as Chain)
     const { enqueueSnackbar } = useSnackbar()
-    
+
     useEffect(() => {
         const currentChain: Chain = chains.find(chain => chain.id === chainId) as Chain
         setActiveChain(currentChain)
     }, [chainId, chains])
 
     async function changeChain(e: any) {
-        try {
-            const chainId = parseInt(e.target.value)
-            const targetChain = chains.find(chain => chain.id === chainId)
+        const chainId = parseInt(e.target.value)
+        const targetChain = chains.find(chain => chain.id === chainId)
 
-            if (!targetChain) {
-                enqueueSnackbar(`Chain with ID ${chainId} is not configured`, {variant: "warning", autoHideDuration: 3000})
-            }
-
-            await switchChain({ chainId: chainId }, {
-                onSuccess: (data, variables) => {
-                    console.log("Chain switched successfully:", data)
-                    const newChain = chains.find(chain => chain.id === variables.chainId) as Chain
-                    setActiveChain(newChain)
-                },
-                onError: (error) => {
-                    console.error("Error switching chain:", error)
-                },
-                onSettled: (data, error) => {
-                    console.log("Switch chain settled:", { data, error })
-                }
-            })
-        } catch (e) {
-            console.error("Error:", e)
+        if (!targetChain) {
+            enqueueSnackbar(`Chain with ID ${chainId} is not configured`, { variant: "warning", autoHideDuration: 3000 })
         }
+
+        await switchChain({ chainId: chainId }, {
+            onSuccess: (data, variables) => {
+                console.log("Chain switched successfully:", data)
+                const newChain = chains.find(chain => chain.id === variables.chainId) as Chain
+                setActiveChain(newChain)
+            },
+            onError: (error) => {
+                console.error("Error switching chain:", error)
+            },
+            onSettled: (data, error) => {
+                console.log("Switch chain settled:", { data, error })
+            }
+        })
     }
 
     return (
