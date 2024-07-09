@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Chain } from 'viem'
-import { useAccount, useDisconnect, useEnsAvatar, useEnsName, useBalance, useConfig, useSwitchChain, useChainId } from 'wagmi'
+import { useAccount, useDisconnect, useEnsAvatar, useEnsName, useBalance, useSwitchChain, useChainId } from 'wagmi'
 
 export default function Account() {
     const { address } = useAccount()
@@ -11,33 +11,31 @@ export default function Account() {
     const chainId = useChainId()
     const { chains, switchChain } = useSwitchChain()
     const [activeChain, setActiveChain] = useState({ name: "" } as Chain)
-    const config = useConfig()
-
+    
     useEffect(() => {
         const currentChain: Chain = chains.find(chain => chain.id === chainId) as Chain
-        console.log("Current Chain: ", currentChain)
         setActiveChain(currentChain)
     }, [chainId, chains])
 
     async function changeChain(e: any) {
         try {
-            const id = parseInt(e.target.value)
-            const targetChain = chains.find(chain => chain.id === id)
+            const chainId = parseInt(e.target.value)
+            const targetChain = chains.find(chain => chain.id === chainId)
 
             if (!targetChain) {
-                throw new Error(`Chain with ID ${id} is not configured`)
+                throw new Error(`Chain with ID ${chainId} is not configured`)
             }
 
-            await switchChain({ chainId: id }, {
-                onSuccess: (data, variables, context) => {
+            await switchChain({ chainId: chainId }, {
+                onSuccess: (data, variables) => {
                     console.log("Chain switched successfully:", data)
                     const newChain = chains.find(chain => chain.id === variables.chainId) as Chain
                     setActiveChain(newChain)
                 },
-                onError: (error, variables, context) => {
+                onError: (error) => {
                     console.error("Error switching chain:", error)
                 },
-                onSettled: (data, error, variables, context) => {
+                onSettled: (data, error) => {
                     console.log("Switch chain settled:", { data, error })
                 }
             })
@@ -46,8 +44,6 @@ export default function Account() {
         }
     }
 
-    console.log("Chains: ", chains)
-    console.log("Chain ID: ", chainId)
     return (
         <div>
             <span>Chain: {activeChain.name}</span>
