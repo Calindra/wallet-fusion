@@ -6,6 +6,8 @@ import App from './App.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider } from 'wagmi'
 import { config } from './services/wallet/wallet-config.ts'
+import { SnackbarProvider } from 'notistack'
+
 
 const queryClient = new QueryClient()
 
@@ -16,7 +18,9 @@ if (rootElement != null) {
     <React.StrictMode>
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
-          <App />
+          <SnackbarProvider anchorOrigin={{ vertical: "top", horizontal: "right" }}>
+            <App />
+          </SnackbarProvider>
         </QueryClientProvider>
       </WagmiProvider>
     </React.StrictMode>

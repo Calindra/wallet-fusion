@@ -3,11 +3,10 @@ import * as React from 'react'
 import { Connector, useConnect } from 'wagmi'
 import metamaskIcon from "../../assets/metamask.svg"
 
-
 export default function WalletOptions() {
     const { connectors, connect } = useConnect()
     const connec = connectors.find((connector: any) => connector.id === 'io.metamask');
-
+   
     if (!connec) {
         throw new Error("Any connector was found. Check if you import it correctly.")
     }
