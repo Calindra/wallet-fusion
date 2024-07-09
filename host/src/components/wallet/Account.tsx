@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Chain } from 'viem'
 import { useAccount, useDisconnect, useEnsAvatar, useEnsName, useBalance, useSwitchChain, useChainId } from 'wagmi'
+import { useSnackbar } from 'notistack'
 
 export default function Account() {
     const { address } = useAccount()
@@ -11,6 +12,7 @@ export default function Account() {
     const chainId = useChainId()
     const { chains, switchChain } = useSwitchChain()
     const [activeChain, setActiveChain] = useState({ name: "" } as Chain)
+    const { enqueueSnackbar } = useSnackbar()
     
     useEffect(() => {
         const currentChain: Chain = chains.find(chain => chain.id === chainId) as Chain
@@ -23,7 +25,7 @@ export default function Account() {
             const targetChain = chains.find(chain => chain.id === chainId)
 
             if (!targetChain) {
-                throw new Error(`Chain with ID ${chainId} is not configured`)
+                enqueueSnackbar(`Chain with ID ${chainId} is not configured`, {variant: "warning", autoHideDuration: 3000})
             }
 
             await switchChain({ chainId: chainId }, {
