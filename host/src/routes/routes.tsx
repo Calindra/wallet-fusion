@@ -6,6 +6,7 @@ import { getAllCollections } from './loaders/get-all-collections.ts'
 import { getCollectionById } from './loaders/get-collection-by-id.ts'
 import { getNftById } from './loaders/get-nft-by-id.ts'
 import NftDetail from '../views/nft-detail/NftDetail.tsx'
+import Greetings from 'remoteApp/Greetings';
 
 
 export const routes: RouteObject[] = [
@@ -13,6 +14,10 @@ export const routes: RouteObject[] = [
         element: <HeaderLayout />,
         path: "/",
         children: [
+            {
+                index: true,
+                element: <Greetings name={"Cartesi"}/>
+            },
             {
                 path: "collections",
                 element: <CollectionTable />,

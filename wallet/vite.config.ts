@@ -9,7 +9,9 @@ export default defineConfig({
     federation({
       name: "remote_app",
       filename: "remoteEntry.js",
-      exposes: {},
+      exposes: {
+        './Greetings': './src/components/Greetings.tsx'
+      },
       shared: ['react', 'react-dom', '@emotion/react', '@emotion/styled', '@mui/icons-material', '@mui/material']
     }),
   ],
